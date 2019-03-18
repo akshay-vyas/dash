@@ -38,6 +38,9 @@
           <li class=" nav-item"><a href="verified-product-list.php?id=subassembly-details"><i class="ft-mail"></i><span class="menu-title" data-i18n="">Assign Details</span></a>
           </li>
 
+           <li class=" nav-item"><a href="verified-product-list.php?id=images"><i class="ft-mail"></i><span class="menu-title" data-i18n="">Assign Images</span></a>
+          </li>
+
            <li class=" nav-item"><a href="#"><i class="ft-monitor"></i><span class="menu-title" data-i18n="">operations</span></a>
             <ul class="menu-content">
                <li><a class="menu-item" href="product-new.php">New Products</a></li>

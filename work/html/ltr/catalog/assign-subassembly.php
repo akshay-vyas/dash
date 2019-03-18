@@ -16,11 +16,11 @@ if(isset($_POST['add_subassembly']))
 
   foreach ($brand_id as $brand_id)
   {
-      $insert = mysqli_query($conn,"insert into assign_subassembly values(null,'$product_id','$subassembly_id','0')");
+      $insert = mysqli_query($conn,"insert into assign_subassembly values(null,'$product_id','$brand_id','0')");
      // echo "insert into assign_brands values(null,'$product_id','$brand_id','0')";
   }
   
-  header('Location: assign-brands.php');
+  header('Location:assign-subassembly.php');
 
 
 }

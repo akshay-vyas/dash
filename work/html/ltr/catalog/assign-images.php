@@ -16,11 +16,11 @@ if(isset($_POST['add_brand']))
 
   foreach ($brand_id as $brand_id)
   {
-      $insert = mysqli_query($conn,"insert into assign_subassembly_details values(null,'$product_id','$brand_id','0')");
-    // echo "insert into assign_subassembly_details values(null,'$product_id','$brand_id','0')";
+      $insert = mysqli_query($conn,"insert into assign_brands values(null,'$product_id','$brand_id','0')");
+     // echo "insert into assign_brands values(null,'$product_id','$brand_id','0')";
   }
   
-  //    header('Location: assign-subassembly-details.php');
+  header('Location: assign-brands.php');
 
 
 }
@@ -128,7 +128,7 @@ include('header.php');
 
 
                                 <tr>
-                                    <form method="post" action="assign-products-2.php">
+                                    <form method="post" action="insert-images.php">
                                         <input type="hidden" name="product_id" value="<?php echo $row['product_id'];?>">
                                         <input type="hidden" name="request_id" value="<?php echo $request_id;?>">
 
@@ -144,7 +144,7 @@ include('header.php');
              
               
               
-               </form>
+            
                                     
                                 </tr>
 
@@ -189,33 +189,52 @@ include('header.php');
                         </ul>
                     </div>
                 </div>
+                
+                <div class="col-md-6">
+            <div class="card">
+               
                 <div class="card-content collapse show">
-                    <div class="card-body card-dashboard">
-                        <form method="post">
-                        <div class="checkbox">
-                            <?php
-                            $brand = mysqli_query($conn,"select * from brand_models m, assign_models am, model_subassembly sm,subassembly_details sd where m.brand_model_id = am.brand_model_id and sm.model_id = m.brand_model_id and sd.subassembly_id = sm.subassembly_id and am.product_id ='$product_id' ");
-                            foreach ($brand as $brand)
-                            {
-                            ?>
-                          <label><input type="checkbox" name="add_brands[]" value="<?php echo $brand['subassembly_details_id'];?>"><?php echo $brand['subassembly_details'];?></label>
-                          <?php 
-                      }
-                      ?>
-                        </div>
-                        <input type="hidden" name="product_id" value="<?php echo $product_id;?>">
-                        <button class="btn btn-primary" type="submit" name="add_brand" value="submit">Add Now</button>
-                    </form>
+                    <div class="card-body">
 
-
-
-                     
-                        
-                    
                        
-                    
+                           
+
+                           
+                            <div class="form-group col-12 mb-2 file-repeater">
+                                <div data-repeater-list="repeater-list">
+                                    <div data-repeater-item>
+                                        <div class="row mb-1">
+                                            <div class="col-9 col-xl-10">
+                                                <label class="file center-block">
+                                                    <input type="file" id="file" name="file[]">
+                                                    <span class="file-custom"></span>
+                                                </label>
+                                            </div>
+                                            <div class="col-2 col-xl-1">
+                                                <button type="button" data-repeater-delete class="btn btn-icon btn-danger mr-1"><i class="ft-x"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="button" data-repeater-create class="btn btn-primary">
+                                    <i class="icon-plus4"></i> Add one more
+                                </button>
+
+
+                            </div>
+
+                            <button type="button" name="add_images" value="submit" data-repeater-create class="btn btn-danger">
+                                    <i class="icon-plus4"></i> Confirm
+                                </button>
+                            
+                        </form>
                     </div>
                 </div>
+            </div>
+        </div>
+
+
             </div>
         </div>
     </div>
@@ -235,6 +254,7 @@ include('theme.php');
    <?php include('footer.php'); ?>
 
     <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
+    <script src="../../../app-assets/vendors/js/forms/repeater/jquery.repeater.min.js"></script>
      <script src="../../../app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
     <script src="../../../app-assets/vendors/js/charts/raphael-min.js"></script>
     <script src="../../../app-assets/vendors/js/charts/morris.min.js"></script>
@@ -244,6 +264,7 @@ include('theme.php');
     <script src="../../../app-assets/js/core/app.min.js"></script>
     <script src="../../../app-assets/js/scripts/customizer.min.js"></script>
     <script src="../../../app-assets/js/scripts/pages/dashboard-ecommerce.min.js"></script>
+    <script src="../../../app-assets/js/scripts/forms/form-repeater.min.js"></script>
     
   </body>
 

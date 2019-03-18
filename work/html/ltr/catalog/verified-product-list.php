@@ -33,6 +33,11 @@ if(isset($_POST['check']))
         header("Location:assign-subassembly-details.php?product_id=$product_id");
     }
 
+    if($request_id == 'images')
+    {
+        header("Location:assign-images.php?product_id=$product_id");
+    }
+
 
   //echo "asd";
   $product_id = $_POST['product_id'];

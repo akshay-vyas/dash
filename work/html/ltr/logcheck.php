@@ -1,6 +1,7 @@
 <?php 
 
 include('admin/dbconnect.php');
+//include('logout.php');
 session_start();
 if(isset($_POST['login']))
 {

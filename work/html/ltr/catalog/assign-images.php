@@ -7,23 +7,7 @@ $view = mysqli_query($conn,$view_query);
 
 
 
-if(isset($_POST['add_brand']))
-{
-  //echo "asd";
-    $product_id = $_POST['product_id']; 
-  
-  $brand_id = $_POST['add_brands'];
 
-  foreach ($brand_id as $brand_id)
-  {
-      $insert = mysqli_query($conn,"insert into assign_brands values(null,'$product_id','$brand_id','0')");
-     // echo "insert into assign_brands values(null,'$product_id','$brand_id','0')";
-  }
-  
-  header('Location: assign-brands.php');
-
-
-}
 ?>
 
 
@@ -128,7 +112,7 @@ include('header.php');
 
 
                                 <tr>
-                                    <form method="post" action="insert-images.php">
+                                   
                                         <input type="hidden" name="product_id" value="<?php echo $row['product_id'];?>">
                                         <input type="hidden" name="request_id" value="<?php echo $request_id;?>">
 
@@ -144,7 +128,7 @@ include('header.php');
              
               
               
-            
+               
                                     
                                 </tr>
 
@@ -189,52 +173,61 @@ include('header.php');
                         </ul>
                     </div>
                 </div>
-                
-                <div class="col-md-6">
-            <div class="card">
-               
                 <div class="card-content collapse show">
-                    <div class="card-body">
+                    <div class="card-body card-dashboard">
+                        <form method="post" action="insert-images.php" enctype="multipart/form-data">
+                        <input type="file" name="p_image">
+                        <input type="hidden" name="product_id" value="<?php echo $product_id;?>">
+                        <button class="btn btn-primary" type="submit" name="submit" value="submit">Add Now</button>
+                    </form>
 
+
+
+                     
+                        
+                    
                        
-                           
-
-                           
-                            <div class="form-group col-12 mb-2 file-repeater">
-                                <div data-repeater-list="repeater-list">
-                                    <div data-repeater-item>
-                                        <div class="row mb-1">
-                                            <div class="col-9 col-xl-10">
-                                                <label class="file center-block">
-                                                    <input type="file" id="file" name="file[]">
-                                                    <span class="file-custom"></span>
-                                                </label>
-                                            </div>
-                                            <div class="col-2 col-xl-1">
-                                                <button type="button" data-repeater-delete class="btn btn-icon btn-danger mr-1"><i class="ft-x"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <button type="button" data-repeater-create class="btn btn-primary">
-                                    <i class="icon-plus4"></i> Add one more
-                                </button>
-
-
-                            </div>
-
-                            <button type="button" name="add_images" value="submit" data-repeater-create class="btn btn-danger">
-                                    <i class="icon-plus4"></i> Confirm
-                                </button>
-                            
-                        </form>
+                    
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</section>
 
 
+ <section id="horizontal">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Images Allocated</h4>
+                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                            <li><a data-action="close"><i class="ft-x"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <?php
+                    $images=mysqli_query($conn,"select * from images where product_id = '$product_id'");
+                    
+                    foreach ($images as $images) {
+                       ?>
+        <figure class="col-lg-3 col-md-6 col-12" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+         
+              <img class="img-thumbnail img-fluid" src="<?php echo '../../images/'.$product_id.'/'.$images['image_name'];?>" itemprop="thumbnail" alt="Image description" />
+         
+        </figure>
+        <?php 
+    }
+    ?>
+
+      </div>
             </div>
         </div>
     </div>
@@ -254,7 +247,6 @@ include('theme.php');
    <?php include('footer.php'); ?>
 
     <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
-    <script src="../../../app-assets/vendors/js/forms/repeater/jquery.repeater.min.js"></script>
      <script src="../../../app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
     <script src="../../../app-assets/vendors/js/charts/raphael-min.js"></script>
     <script src="../../../app-assets/vendors/js/charts/morris.min.js"></script>
@@ -264,7 +256,6 @@ include('theme.php');
     <script src="../../../app-assets/js/core/app.min.js"></script>
     <script src="../../../app-assets/js/scripts/customizer.min.js"></script>
     <script src="../../../app-assets/js/scripts/pages/dashboard-ecommerce.min.js"></script>
-    <script src="../../../app-assets/js/scripts/forms/form-repeater.min.js"></script>
     
   </body>
 

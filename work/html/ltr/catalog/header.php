@@ -1,3 +1,4 @@
+
 <nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-semi-dark navbar-shadow">
       <div class="navbar-wrapper">
         <div class="navbar-header">
@@ -12,7 +13,7 @@
         <div class="navbar-container content">
           <div class="collapse navbar-collapse" id="navbar-mobile">
             <ul class="nav navbar-nav mr-auto float-left">
-              <li class="dropdown nav-item mega-dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Mega</a>
+              <li class="dropdown nav-item mega-dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Catalog</a>
                 <ul class="mega-dropdown-menu dropdown-menu row">
                   <li class="col-md-2">
                     <h6 class="dropdown-menu-header text-uppercase mb-1"><i class="fa fa-newspaper-o"></i> News</h6>
@@ -218,7 +219,7 @@
               </li>
               <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="avatar avatar-online"><img src="../../../app-assets/images/portrait/small/avatar-s-1.png" alt="avatar"><i></i></span><span class="user-name">John Doe</span></a>
                 <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="user-cards.html"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="chat-application.html"><i class="ft-message-square"></i> Chats</a>
-                  <div class="dropdown-divider"></div><a class="dropdown-item" href="../login.php"><i class="ft-power"></i> Logout</a>
+                  <div class="dropdown-divider"></div><i class="ft-power"><button type="submit" name="logout" value="logout" class="btn btn-danger"> Logout</button></i>
                 </div>
               </li>
             </ul>

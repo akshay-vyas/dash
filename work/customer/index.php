@@ -398,7 +398,7 @@ if(isset($_GET['action']) && $_GET['action']=="add"){
 			
 			<div class="row isotope-grid">
 				<?php
-                $ret=mysqli_query($conn,"select * from product_details");
+                $ret=mysqli_query($conn,"select * from product_details join images WHERE product_details.product_id=images.product_id");
 				while ($row=mysqli_fetch_array($ret))
 				{
 				?>
@@ -408,8 +408,8 @@ if(isset($_GET['action']) && $_GET['action']=="add"){
 					
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<a href="product-detail.php?pid=<?php echo htmlentities($row['id']);?>">
-							<img src="admin/productimages/<?php echo htmlentities($row['id']);?>/<?php echo htmlentities($row['productImage1']);?>" alt="IMG-PRODUCT" style="height: 250px;width:250px;">
+							<a href="product-detail.php?pid=<?php echo htmlentities($row['product_id']);?>">
+							<img src="/vcom/dash/work/html/images/<?php echo htmlentities($row['product_id']);?>/<?php echo htmlentities($row['image_name']);?>" alt="<?php echo htmlentities($row['image_name']);?>" style="height: 250px;width:250px;">
 							
 							
 						</div>
@@ -418,7 +418,7 @@ if(isset($_GET['action']) && $_GET['action']=="add"){
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.php?pid=<?php echo htmlentities($row['id']);?>"><?php echo htmlentities($row['product_name']);?></a>
+								<a href="product-detail.php?pid=<?php echo htmlentities($row['product_id']);?>"><?php echo htmlentities($row['product_name']);?></a>
 
 								<span class="stext-105 cl3">
 									Rs.<?php echo htmlentities($row['product_oem']);?>

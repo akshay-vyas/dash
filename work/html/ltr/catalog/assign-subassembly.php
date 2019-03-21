@@ -197,7 +197,7 @@ include('header.php');
                             foreach ($brand as $brand)
                             {
                             ?>
-                          <label><input type="checkbox" name="add_subassemblies[]" value="<?php echo $brand['subassembly_id'];?>"><?php echo $brand['model_name']."--".$brand['subassembly_name'];?></label>
+                          <label><input type="checkbox" name="add_subassemblies[]" value="<?php echo $brand['subassembly_id'];?>"><?php echo $brand['subassembly_name'];?></label>
                           <?php 
                       }
                       ?>

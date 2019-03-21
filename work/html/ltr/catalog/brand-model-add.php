@@ -195,83 +195,8 @@ include('header.php');
           </div>
         </div>
       
-    
-   
-
-
-
-<div class="content-body">
-    <div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Striped rows</h4>
-                <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                <div class="heading-elements">
-                    <ul class="list-inline mb-0">
-                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                        <li><a data-action="close"><i class="ft-x"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="card-content collapse show">
-                <div class="card-body">
-                   
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">Brand Name</th>
-                          <th scope="col">Model Name</th>
-                          <th scope="col">Model Year</th>
-                          <th scope="col">Model OEM</th> 
-                          <th scope="col">Model Indian</th> 
-                          <th scope="col">Model Chines</th> 
-                          <th scope="col">Edit</th>
-
-                          
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php
-                        $select_brand = mysqli_query($conn,"select * from brands b, brand_models m where b.brand_id = m.brand_id ORDER BY b.brand_name");
-                        $i=0;
-                        foreach ($select_brand as $col)
-                        {
-                        ?>
-                        <tr>
-                          <th scope="row"><?php echo $i=$i+1;?></th>
-                          <td><?php echo $col['brand_name'];?></td>
-                          <td><?php echo $col['model_name'];?></td>
-                          <td><?php echo $col['brand_model_type'].' Wheeler';?></td>
-                          <td><?php echo $col['model_year'];?></td>
-                          <td><?php echo $col['model_oem'];?></td>
-                          <td><?php echo $col['model_indian'];?></td>
-                          <td><?php echo $col['model_chines'];?></td>
-
-                          <td>Edit</td>
-                         
-                        </tr>
-                        <?php 
-                    }
-                    ?>
-                       
-                       
-                      </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
     </div>
-</div>
-</div>
-
-</div>
-</div>
+    </div>
 
         </div>
       </div>

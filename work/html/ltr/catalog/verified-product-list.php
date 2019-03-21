@@ -159,7 +159,7 @@ include('header.php');
                                     <td><?php echo $row['product_model'];?></td>
                                     <td><?php echo $row['product_series'];?></td>
                                     <td><?php echo $row['product_owner'];?></td>
-                                    <td><a href="product-info.php?product_id=<?php echo $row['product_id'];?>">more info</a></td>
+                                    <td><a href="">more info</a></td>
                                     <td><button class="btn btn-primary" name="check" value="submit">assign _now</button></td>
               
                </form>

@@ -3,15 +3,15 @@ session_start();
 error_reporting(0);
 include('dbconnect.php');
 if(isset($_GET['action']) && $_GET['action']=="add"){
-	$id=intval($_GET['id']);
-	if(isset($_SESSION['cart'][$id])){
-		$_SESSION['cart'][$id]['quantity']++;
+	$product_id=intval($_GET['product_id']);
+	if(isset($_SESSION['cart'][$product_id])){
+		$_SESSION['cart'][$product_id]['product_quantity']++;
 	}else{
-		$sql_p="SELECT * FROM products WHERE id={$id}";
-		$query_p=mysqli_query($con,$sql_p);
+		$sql_p="SELECT * FROM product_details WHERE product_id={$product_id}";
+		$query_p=mysqli_query($conn,$sql_p);
 		if(mysqli_num_rows($query_p)!=0){
 			$row_p=mysqli_fetch_array($query_p);
-			$_SESSION['cart'][$row_p['id']]=array("quantity" => 1, "price" => $row_p['productPrice']);
+			$_SESSION['cart'][$row_p['product_id']]=array("product_quantity" => 1, "oem" => $row_p['product_oem']);
 			header('location:shopping-cart.php');
 		}else{
 			$message="Product ID is invalid";
@@ -26,7 +26,7 @@ header('location:login.php');
 }
 else
 {
-mysqli_query($con,"insert into wishlist(userId,productId) values('".$_SESSION['id']."','$pid')");
+mysqli_query($conn,"insert into wishlist(userId,productId) values('".$_SESSION['id']."','$pid')");
 echo "<script>alert('Product aaded in wishlist');</script>";
 header('location:my-wishlist.php');
 
@@ -105,7 +105,7 @@ if(isset($_POST['submit']))
 
 
 <?php 
-$ret=mysqli_query($con,"select * from products where id='$pid'");
+$ret=mysqli_query($conn,"select * from product_details where product_id='$pid'");
 while($row=mysqli_fetch_array($ret))
 {
 
@@ -124,9 +124,9 @@ while($row=mysqli_fetch_array($ret))
 							<div class="slick3 gallery-lb">
 								<div class="item-slick3" data-thumb="admin/productimages/<?php echo htmlentities($row['id']);?>/<?php echo htmlentities($row['productImage1']);?>">
 									<div class="wrap-pic-w pos-relative">
-										<img src="admin/productimages/<?php echo htmlentities($row['id']);?>/<?php echo htmlentities($row['productImage1']);?>" alt="IMG-PRODUCT">
+										<img src="admin/productimages/<?php echo htmlentities($row['product_id']);?>/<?php echo htmlentities($row['productImage1']);?>" alt="IMG-PRODUCT">
 
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="admin/productimages/<?php echo htmlentities($row['id']);?>/<?php echo htmlentities($row['productImage1']);?>">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="admin/productimages/<?php echo htmlentities($row['product_id']);?>/<?php echo htmlentities($row['productImage1']);?>">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
@@ -163,7 +163,7 @@ while($row=mysqli_fetch_array($ret))
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
 						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-							<a href="product-detail.php?pid=<?php echo htmlentities($row['id']);?>"><?php echo htmlentities($row['productName']);?></a>
+							<a href="product-detail.php?pid=<?php echo htmlentities($row['product_id']);?>"><?php echo htmlentities($row['product_name']);?></a>
 						</h4>
 
 						<span class="mtext-106 cl2">

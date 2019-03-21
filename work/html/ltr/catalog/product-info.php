@@ -105,7 +105,7 @@ include('header.php');
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>SKU</th>
+                                    <th>Price</th>
                                     <th>Model</th>
                                     <th>Series</th>
                                     <th>Owner</th>
@@ -133,7 +133,7 @@ include('header.php');
 
 
                                     <td><?php echo $row['product_name'];?></td>
-                                    <td><?php echo $row['product_sku'];?></td>
+                                    <td><?php echo $row['product_price'];?></td>
                                     <td><?php echo $row['product_model'];?></td>
                                     <td><?php echo $row['product_series'];?></td>
                                     <td><?php echo $row['product_owner'];?></td>
@@ -166,10 +166,14 @@ include('header.php');
                     
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>
 </section>
+
+
 
 
  <section id="horizontal">
@@ -177,7 +181,7 @@ include('header.php');
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Select Brands</h4>
+                    <h4 class="card-title">Assigned Brands</h4>
                     <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
@@ -193,29 +197,228 @@ include('header.php');
                         <form method="post">
                         <div class="checkbox">
                             <?php
-                            $brand = mysqli_query($conn,"select * from brand_models m, assign_models am, model_subassembly sm where m.brand_model_id = am.brand_model_id and sm.model_id = m.brand_model_id and am.product_id ='$product_id' ");
+                            $brand = mysqli_query($conn,"select * from brands b, assign_brands ab where b.brand_id = ab.brand_id and ab.product_id ='$product_id' ");
+                            $i=0;
                             foreach ($brand as $brand)
                             {
                             ?>
-                          <label><input type="checkbox" name="add_subassemblies[]" value="<?php echo $brand['subassembly_id'];?>"><?php echo $brand['model_name']."--".$brand['subassembly_name'];?></label>
+                         <div class="badge badge-secondary"><h5><?php echo$brand['brand_name'];?></h5></div>
                           <?php 
                       }
                       ?>
                         </div>
                         <input type="hidden" name="product_id" value="<?php echo $product_id;?>">
-                        <button class="btn btn-primary" type="submit" name="add_subassembly" value="submit">Add Now</button>
-                    </form>
-
-
-
-                     
                         
-                    
-                       
-                    
+                    </form>
                     </div>
                 </div>
+
+                <div class="card-header">
+                    <h4 class="card-title">Assigned Models</h4>
+                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                            <li><a data-action="close"><i class="ft-x"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card-content collapse show">
+                    <div class="card-body card-dashboard">
+                        <form method="post">
+                        <div class="checkbox">
+                            <table class="table display nowrap table-striped table-bordered scroll-horizontal">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Year</th>
+                                    <th>OEM</th>
+                                    <th>INDIAN</th>
+                                    <th>CHINES</th>
+                                    <th>TYPE</th>
+                                   
+                                     
+                                   
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                            <?php
+                            $brand = mysqli_query($conn,"select * from brand_models bm, assign_models am where bm.brand_model_id = am.brand_model_id and am.product_id ='$product_id' ");
+                            $i=0;
+                            foreach ($brand as $brand)
+                            {
+                            ?>
+                            <tr>
+                                <td><?php echo $brand['model_name'];?></td>
+                                <td><?php echo $brand['model_year'];?></td>
+                                <td><?php echo $brand['model_oem'];?></td>
+                                <td><?php echo $brand['model_indian'];?></td>
+                                <td><?php echo $brand['model_chines'];?></td>
+                                <?php $wheel = $brand['brand_model_type']; if($wheel =='4'){?>
+                                <td><div class="fa fa-car"></div></td><?php } ?>
+
+                                <?php $wheel = $brand['brand_model_type']; if($wheel =='2'){?>
+                                <td><div class="fa fa-bicycle"></div></td><?php } ?>
+                        
+                        </tr>
+                          <?php 
+                      }
+                      ?>
+                      </tbody>
+                        </table>
+                        </div>
+                        <input type="hidden" name="product_id" value="<?php echo $product_id;?>">
+                        
+                    </form>
+                    </div>
+                </div>
+
+
+                <div class="card-header">
+                    <h4 class="card-title">Assigned Subassemblies</h4>
+                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                            <li><a data-action="close"><i class="ft-x"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card-content collapse show">
+                    <div class="card-body card-dashboard">
+                        <form method="post">
+                        <div class="checkbox">
+                            <table class="table display nowrap table-striped table-bordered scroll-horizontal">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Subassembly Name</th>
+                                    
+                                   
+                                     
+                                   
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                            <?php
+                            $brand = mysqli_query($conn,"select * from brand_models m, assign_models am, model_subassembly sm where m.brand_model_id = am.brand_model_id and sm.model_id = m.brand_model_id and am.product_id ='$product_id'");
+                            $i=0;
+                            foreach ($brand as $brand)
+                            {
+                            ?>
+                            <tr>
+                                <td><?php echo $brand['model_name'];?></td>
+                                <td><?php echo $brand['subassembly_name'];?></td>
+                                
+                        
+                        </tr>
+                          <?php 
+                      }
+                      ?>
+                      </tbody>
+                        </table>
+                        </div>
+                        <input type="hidden" name="product_id" value="<?php echo $product_id;?>">
+                        
+                    </form>
+                    </div>
+                </div>
+
+
+                <div class="card-header">
+                    <h4 class="card-title">Assigned Subassembley Details</h4>
+                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                            <li><a data-action="close"><i class="ft-x"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                 <div class="card-content collapse show">
+                    <div class="card-body card-dashboard">
+                        <form method="post">
+                        <div class="checkbox">
+                            <table class="table display nowrap table-striped table-bordered scroll-horizontal">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                   
+                                    
+                                   
+                                     
+                                   
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                            <?php
+                            $brand = mysqli_query($conn,"select * from subassembly_details sd, assign_subassembly_details asd where sd. subassembly_details_id = asd.subassembly_details_id and asd.product_id ='$product_id'");
+                            $i=0;
+                            foreach ($brand as $brand)
+                            {
+                            ?>
+                            <tr>
+                                
+                                <td><?php echo $brand['subassembly_details'];?></td>
+                                
+                        
+                        </tr>
+                          <?php 
+                      }
+                      ?>
+                      </tbody>
+                        </table>
+                        </div>
+                        <input type="hidden" name="product_id" value="<?php echo $product_id;?>">
+                        
+                    </form>
+                    </div>
+                </div>
+
+
             </div>
+        </div>
+    </div>
+</section>
+
+<section id="horizontal">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Images Allocated</h4>
+                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                   
+                </div>
+               
+                    <?php
+                    $images=mysqli_query($conn,"select * from images where product_id = '$product_id'");
+                    
+                    foreach ($images as $images) {
+                       ?>
+        <figure class="col-lg-3 col-md-6 col-12" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+         
+              <img class="img-thumbnail img-fluid" src="<?php echo '../../images/'.$product_id.'/'.$images['image_name'];?>" itemprop="thumbnail" alt="Image description" />
+         
+        </figure>
+        <?php 
+    }
+    ?>
+
+      
+            
         </div>
     </div>
 </section>

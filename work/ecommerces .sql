@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 18, 2019 at 06:54 AM
+-- Generation Time: Mar 21, 2019 at 09:57 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -70,7 +70,9 @@ INSERT INTO `assign_brands` (`assign_brand_id`, `product_id`, `brand_id`, `assig
 (8, 10, 3, '0'),
 (9, 14, 4, '0'),
 (10, 14, 5, '0'),
-(11, 23, 7, '0');
+(11, 23, 7, '0'),
+(12, 19, 8, '0'),
+(13, 29, 8, '0');
 
 -- --------------------------------------------------------
 
@@ -90,7 +92,12 @@ CREATE TABLE `assign_models` (
 --
 
 INSERT INTO `assign_models` (`assign_model_id`, `product_id`, `brand_model_id`, `assign_model_status`) VALUES
-(21, 10, 4, 0);
+(21, 10, 4, 0),
+(22, 19, 9, 0),
+(23, 19, 10, 0),
+(24, 19, 11, 0),
+(25, 29, 9, 0),
+(26, 29, 10, 0);
 
 -- --------------------------------------------------------
 
@@ -131,6 +138,38 @@ CREATE TABLE `assign_subassembly` (
   `assign_subassembly_status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `assign_subassembly`
+--
+
+INSERT INTO `assign_subassembly` (`assign_subassembly_id`, `product_id`, `subassembly_id`, `assign_subassembly_status`) VALUES
+(7, 10, 2, '0'),
+(8, 10, 2, '0'),
+(9, 19, 5, '0'),
+(10, 29, 4, '0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assign_subassembly_details`
+--
+
+CREATE TABLE `assign_subassembly_details` (
+  `assign_subassembly_details_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `subassembly_details_id` int(11) NOT NULL,
+  `assign_subassemblydetails_status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `assign_subassembly_details`
+--
+
+INSERT INTO `assign_subassembly_details` (`assign_subassembly_details_id`, `product_id`, `subassembly_details_id`, `assign_subassemblydetails_status`) VALUES
+(6, 10, 4, 0),
+(7, 19, 5, 0),
+(8, 29, 5, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -153,7 +192,8 @@ INSERT INTO `brands` (`brand_id`, `brand_name`) VALUES
 (4, 'honda'),
 (5, 'bajaj'),
 (6, 'yamaha'),
-(7, 'maruti');
+(7, 'maruti'),
+(8, 'Range Rover');
 
 -- --------------------------------------------------------
 
@@ -184,7 +224,12 @@ INSERT INTO `brand_models` (`brand_model_id`, `brand_id`, `model_name`, `model_y
 (5, 4, 'dio', '2010', 'oem', 'indian', 'NA', '2', '0'),
 (6, 4, 'dio 2', '2010', 'oem', 'NA', 'NA', '2', '0'),
 (7, 5, 'pulsar', '2010', 'oem', 'indian', 'chines', '2', '0'),
-(8, 5, 'chetak', '1947', 'oem', 'NA', 'NA', '2', '0');
+(8, 5, 'chetak', '1947', 'oem', 'NA', 'NA', '2', '0'),
+(9, 8, 'Defender Ninety', '2000', 'oem', 'indian', 'NA', '4', '0'),
+(10, 8, 'Defender One Ten', '2010', 'oem', 'indian', 'chines', '4', '0'),
+(11, 8, 'Defender 90', '2013', 'oem', 'NA', 'NA', '4', '0'),
+(12, 8, 'Defender 110', '2015', 'oem', 'NA', 'NA', '4', '0'),
+(13, 8, 'Range Rover Classic', '2015', 'oem', 'NA', 'NA', '4', '0');
 
 -- --------------------------------------------------------
 
@@ -245,7 +290,6 @@ INSERT INTO `cart` (`cart_id`, `product_id`, `buyer_id`, `shipping_id`, `cart_qu
 (5, 2, 1, 2, 3, '2019-02-25 08:57:18', 'placed', '2019-02-24 20:57:18', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (6, 2, 1, 2, 3, '2019-02-25 08:57:18', 'placed', '2019-02-24 20:57:18', '2019-02-12 07:29:03', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (7, 2, 1, 2, 3, '2019-02-25 08:57:18', 'placed', '2019-02-24 20:57:18', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(8, 2, 2, 0, 7, '2019-02-11 07:50:56', 'in_cart', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (9, 5, 1, 2, 2, '2019-02-25 08:57:18', 'placed', '2019-02-24 20:57:18', '2019-02-25 05:36:03', '2019-02-25 05:48:08', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (10, 6, 1, 2, 1, '2019-02-25 08:57:18', 'placed', '2019-02-24 20:57:18', '2019-02-12 07:24:10', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (11, 6, 1, 2, 1, '2019-02-25 08:57:18', 'placed', '2019-02-24 20:57:18', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -310,7 +354,7 @@ INSERT INTO `category` (`category_id`, `category_name`) VALUES
 
 CREATE TABLE `images` (
   `img_id` int(11) NOT NULL,
-  `image_name` varchar(50) NOT NULL,
+  `image_name` varchar(250) NOT NULL,
   `product_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -327,7 +371,6 @@ INSERT INTO `images` (`img_id`, `image_name`, `product_id`) VALUES
 (16, 'logo3.jpg', 1),
 (17, 'logo3.jpg', 6),
 (18, 'logo3.jpg', 7),
-(19, 'logo3.jpg', 10),
 (20, 'logo3.jpg', 11),
 (21, 'logo3.jpg', 12),
 (22, 'logo3.jpg', 13),
@@ -341,9 +384,8 @@ INSERT INTO `images` (`img_id`, `image_name`, `product_id`) VALUES
 (30, 'user2-160x160.jpg', 21),
 (31, 'Screenshot from 2019-02-06 15-59-14.png', 24),
 (32, 'Screenshot from 2019-02-18 12-02-22.png', 24),
-(33, 'Screenshot from 2019-02-18 11-59-04.png', 5),
-(34, 'Screenshot from 2019-02-18 11-59-04.png', 6),
-(35, 'Screenshot from 2019-02-18 12-02-22.png', 25);
+(57, 'Screenshot from 2019-02-06 15-59-56.png', 10),
+(58, 'Screenshot from 2019-03-21 12-12-04.png', 29);
 
 -- --------------------------------------------------------
 
@@ -392,7 +434,11 @@ CREATE TABLE `model_subassembly` (
 INSERT INTO `model_subassembly` (`subassembly_id`, `brand_id`, `model_id`, `subassembly_name`, `subassembly_status`) VALUES
 (1, 1, 3, 'brand 1 name 1', '0'),
 (2, 3, 4, 'sub assembly brand 1', '0'),
-(3, 1, 3, 'ok', '0');
+(3, 1, 3, 'ok', '0'),
+(4, 8, 9, 'Shock Absorber', '0'),
+(5, 8, 10, 'Shock Absorber', '0'),
+(6, 8, 12, 'Shock Absorber', '0'),
+(7, 8, 13, 'Shock Absorber', '0');
 
 -- --------------------------------------------------------
 
@@ -402,9 +448,10 @@ INSERT INTO `model_subassembly` (`subassembly_id`, `brand_id`, `model_id`, `suba
 
 CREATE TABLE `product_details` (
   `product_id` int(20) NOT NULL,
-  `product_name` varchar(50) NOT NULL,
+  `product_name` varchar(250) NOT NULL,
   `product_sku` varchar(50) NOT NULL,
   `product_quantity` varchar(50) NOT NULL,
+  `product_price` varchar(10) NOT NULL,
   `product_color` varchar(50) NOT NULL,
   `product_oem` varchar(50) NOT NULL,
   `product_model` varchar(50) NOT NULL,
@@ -413,7 +460,7 @@ CREATE TABLE `product_details` (
   `product_material` varchar(50) NOT NULL,
   `product_series` varchar(50) NOT NULL,
   `product_dimension` varchar(50) NOT NULL,
-  `product_note` varchar(50) NOT NULL,
+  `product_note` varchar(500) NOT NULL,
   `product_part_number` varchar(50) NOT NULL,
   `product_part_brand` varchar(50) NOT NULL,
   `product_vechicle_brand` varchar(50) NOT NULL,
@@ -425,31 +472,22 @@ CREATE TABLE `product_details` (
 -- Dumping data for table `product_details`
 --
 
-INSERT INTO `product_details` (`product_id`, `product_name`, `product_sku`, `product_quantity`, `product_color`, `product_oem`, `product_model`, `product_location`, `product_design`, `product_material`, `product_series`, `product_dimension`, `product_note`, `product_part_number`, `product_part_brand`, `product_vechicle_brand`, `product_owner`, `product_status`) VALUES
-(1, '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '1', '2', '3', '5', '6', 'akshay@gmail.com', ''),
-(2, 'name', 'sku', 'quantity', 'color', 'oem part', 'model version', 'location', 'design', 'material', 'model series', 'dimenstions', 'note', 'part number', 'part brand', 'vechicle brand', 'akshay@gmail.com', 'verified'),
-(5, 'name1', 'sku1', 'quantity1', 'color1', 'oem part1', 'model version1', 'location1', 'design1', 'material1', 'model series1', 'dimenstions', 'note', 'part number', 'part brand', 'vechicle brand', 'maya@gmail.com', 'verified'),
-(6, 'k', 'k', 'k', 'k', 'k', 'kk', 'k', 'k', 'k', 'kk', 'k', 'k', 'k', 'k', 'k', 'akshay@gmail.com', 'verified'),
-(7, 'Product_name', 'product_sku', 'product_quantity', 'product_color', 'product_oem', 'product_model version', 'product_location', 'product_design ', 'product_material', 'product_model series', 'product_dimensions', 'product_note', 'product_Part no', 'product_Part brand', 'product_vehicle brand', 'product_owner', 'verified'),
-(10, 'Air Filter Assly.', '', '1', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'PD 5810 13', '', '', 'akshay@gmail.com', 'verified'),
-(11, 'Screw M6', '', '5', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', '39 2044 01', '', '', 'akshay@gmail.com', 'verified'),
-(12, 'Bracket air Filter', '', '1', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'PD 5810 17', '', '', 'akshay@gmail.com', 'verified'),
-(13, 'Tube Drain', '', '1', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'PD 5810 12', '', '', 'akshay@gmail.com', 'verified'),
-(14, 'Boot', '', '1', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'PD 5810 11', '', '', 'akshay@gmail.com', 'verified'),
-(15, 'Element Air Filter', '', '1', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'DG 1210 10', '', '', 'akshay@gmail.com', 'verified'),
-(16, 'Gasket', '', '1', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'DG 1210 12', '', '', 'akshay@gmail.com', 'verified'),
-(17, 'Tube Connecting', '', '1', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'JM 1010 17', '', '', 'maya@gmail.com', 'verified'),
-(18, 'Clamp', '', '2', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'DP 1210 18', '', '', 'maya@gmail.com', 'verified'),
-(19, 'Breather Tube', '', '1', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'PD 5810 09', '', '', 'maya@gmail.com', 'verified'),
-(20, 'Plug', '', '1', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'DS 1211 26', '', '', 'maya@gmail.com', 'verified'),
-(21, 'Clamp', '', '1', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'DG 1210 02', '', '', 'maya@gmail.com', 'verified'),
-(22, 'Tube Drain(Air Filter)', '', '1', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'DV 1010 59', '', '', 'maya@gmail.com', 'pending'),
-(23, 'Clamp', '', '1', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'JK 5110 02', '', '', 'maya@gmail.com', 'verified'),
-(24, 'will', 'will', 'will ', 'will ', 'will ', 'wil ', 'will ', 'will ', 'will ', 'will ', 'will ', 'will', 'will', 'will ', 'will ', 'maya@gmail.com', 'verified'),
-(25, 'p name', 'p sku', 'p quantity', 'p color', 'oem', 'p model', 'p location', 'p design', 'p material', 'p model serires', 'p dimension', 'p note', 'p number', 'p brand', 'p vehicle', 'akshay@gmail.com', 'Change Status'),
-(26, '', '', '', '', '', '', '', '', '', '', '', 'note', '', '', 'brand', 'akshay@gmail.com', 'Change Status'),
-(27, '', '', '', '', '', '', '', '', '', '', '', 'note', '', '', 'brand', 'akshay@gmail.com', 'Change Status'),
-(28, 'np', 'np', 'np', 'np', 'np', 'np', 'pnp', 'np', 'np', 'np', 'np', 'np', 'np', 'np', 'np', 'akshay@gmail.com', 'Change Status');
+INSERT INTO `product_details` (`product_id`, `product_name`, `product_sku`, `product_quantity`, `product_price`, `product_color`, `product_oem`, `product_model`, `product_location`, `product_design`, `product_material`, `product_series`, `product_dimension`, `product_note`, `product_part_number`, `product_part_brand`, `product_vechicle_brand`, `product_owner`, `product_status`) VALUES
+(10, 'Air Filter Assly.', '', '1', '200', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'PD 5810 13', '', '', 'akshay@gmail.com', 'verified'),
+(11, 'Screw M6', '', '5', '600', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', '39 2044 01', '', '', 'akshay@gmail.com', 'verified'),
+(12, 'Bracket air Filter', '', '1', '200', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'PD 5810 17', '', '', 'akshay@gmail.com', 'verified'),
+(13, 'Tube Drain', '', '1', '200', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'PD 5810 12', '', '', 'akshay@gmail.com', 'verified'),
+(14, 'Boot', '', '1', '200', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'PD 5810 11', '', '', 'akshay@gmail.com', 'verified'),
+(15, 'Element Air Filter', '', '1', '200', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'DG 1210 10', '', '', 'akshay@gmail.com', 'verified'),
+(16, 'Gasket', '', '1', '200', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'DG 1210 12', '', '', 'akshay@gmail.com', 'verified'),
+(17, 'Tube Connecting', '', '1', '200', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'JM 1010 17', '', '', 'maya@gmail.com', 'verified'),
+(18, 'Clamp', '', '2', '900', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'DP 1210 18', '', '', 'maya@gmail.com', 'verified'),
+(19, 'Breather Tube', '', '1', '200', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'PD 5810 09', '', '', 'maya@gmail.com', 'verified'),
+(20, 'Plug', '', '1', '200', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'DS 1211 26', '', '', 'maya@gmail.com', 'verified'),
+(21, 'Clamp', '', '1', '200', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'DG 1210 02', '', '', 'maya@gmail.com', 'verified'),
+(22, 'Tube Drain(Air Filter)', '', '1', '200', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'DV 1010 59', '', '', 'maya@gmail.com', 'pending'),
+(23, 'Clamp', '', '1', '200', '', 'Bajaj', 'Avenger 150 Street', 'pune', '', '', '', '', '', 'JK 5110 02', '', '', 'maya@gmail.com', 'verified'),
+(29, 'Defender 90/110/Classic Rear Oil Shock Absorber Standard Part BR1077', '', '25', '10000', '', '', 'Range Rover', '', '', '', '', '6lb 4oz', 'As well as controlling the movement of suspension and springs, shock absorbers keep your tyres connected to the ground whilst stationary and in motion. The shock absorbs kinetic energy and transfers it to another form, usually heat, before dissipating it.', 'BR1077', 'BOGE', '', 'akshay@gmail.com', 'verified');
 
 -- --------------------------------------------------------
 
@@ -474,8 +512,7 @@ CREATE TABLE `seller_registration` (
 
 INSERT INTO `seller_registration` (`seller_id`, `seller_name`, `seller_mobile`, `seller_email`, `seller_address`, `gst`, `tin`, `pan`) VALUES
 (3, 'akshay', '8123619432', 'akshay@gmail.com', '#33', '123', '456', '4566'),
-(4, 'maya', '813619432', 'maya@gmail.com', '#456', '125645', '156132132', '123586486'),
-(5, 'maya', '815336142', 'maya@gmail.com', '#333', '4651', '123156', '1232148');
+(4, 'maya', '813619432', 'maya@gmail.com', '#456', '125645', '156132132', '123586486');
 
 -- --------------------------------------------------------
 
@@ -512,7 +549,7 @@ INSERT INTO `shipping_address` (`shipping_id`, `buyer_id`, `first_name`, `last_n
 --
 
 CREATE TABLE `subassembly_details` (
-  `	subassembly_details_id` int(11) NOT NULL,
+  `subassembly_details_id` int(11) NOT NULL,
   `subassembly_id` int(11) NOT NULL,
   `subassembly_details` varchar(250) NOT NULL,
   `subassembly_details_status` varchar(20) NOT NULL
@@ -522,9 +559,10 @@ CREATE TABLE `subassembly_details` (
 -- Dumping data for table `subassembly_details`
 --
 
-INSERT INTO `subassembly_details` (`	subassembly_details_id`, `subassembly_id`, `subassembly_details`, `subassembly_details_status`) VALUES
+INSERT INTO `subassembly_details` (`subassembly_details_id`, `subassembly_id`, `subassembly_details`, `subassembly_details_status`) VALUES
 (1, 3, 'o kk k ', '0'),
-(4, 2, 'sub sub', '0');
+(4, 2, 'sub sub', '0'),
+(5, 4, 'Supersedes: NTC7949, NRC8456, RTC4639, STC292, STC2855, STC3771', '0');
 
 -- --------------------------------------------------------
 
@@ -597,6 +635,12 @@ ALTER TABLE `assign_product`
 --
 ALTER TABLE `assign_subassembly`
   ADD PRIMARY KEY (`assign_subassembly_id`);
+
+--
+-- Indexes for table `assign_subassembly_details`
+--
+ALTER TABLE `assign_subassembly_details`
+  ADD PRIMARY KEY (`assign_subassembly_details_id`);
 
 --
 -- Indexes for table `brands`
@@ -674,7 +718,7 @@ ALTER TABLE `shipping_address`
 -- Indexes for table `subassembly_details`
 --
 ALTER TABLE `subassembly_details`
-  ADD PRIMARY KEY (`	subassembly_details_id`);
+  ADD PRIMARY KEY (`subassembly_details_id`);
 
 --
 -- Indexes for table `sub_category`
@@ -701,12 +745,12 @@ ALTER TABLE `analytics_report`
 -- AUTO_INCREMENT for table `assign_brands`
 --
 ALTER TABLE `assign_brands`
-  MODIFY `assign_brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `assign_brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `assign_models`
 --
 ALTER TABLE `assign_models`
-  MODIFY `assign_model_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `assign_model_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `assign_product`
 --
@@ -716,17 +760,22 @@ ALTER TABLE `assign_product`
 -- AUTO_INCREMENT for table `assign_subassembly`
 --
 ALTER TABLE `assign_subassembly`
-  MODIFY `assign_subassembly_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `assign_subassembly_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `assign_subassembly_details`
+--
+ALTER TABLE `assign_subassembly_details`
+  MODIFY `assign_subassembly_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `brand_models`
 --
 ALTER TABLE `brand_models`
-  MODIFY `brand_model_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `brand_model_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `buyer_registration`
 --
@@ -751,7 +800,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `img_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `img_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 --
 -- AUTO_INCREMENT for table `login`
 --
@@ -761,12 +810,12 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `model_subassembly`
 --
 ALTER TABLE `model_subassembly`
-  MODIFY `subassembly_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `subassembly_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `product_details`
 --
 ALTER TABLE `product_details`
-  MODIFY `product_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `product_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `seller_registration`
 --
@@ -781,7 +830,7 @@ ALTER TABLE `shipping_address`
 -- AUTO_INCREMENT for table `subassembly_details`
 --
 ALTER TABLE `subassembly_details`
-  MODIFY `	subassembly_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `subassembly_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `sub_category`
 --
